@@ -1,0 +1,12 @@
+nginx:
+  container_name: nginx
+  image: jwilder/nginx-proxy:latest
+  ports:
+    - 80:80
+    - 443:443
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    - ./certs:/etc/nginx/certs
+    - ./conf.d/common.conf:/etc/nginx/conf.d/common.conf:ro
+    - ./htpasswd:/etc/nginx/htpasswd
+    - ./vhost.d:/etc/nginx/vhost.d
