@@ -1,6 +1,6 @@
 # nginx-runner
 
-Running one nginx docker container to serve multiple containers via https easily, using [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) and [docker/compose](https://github.com/docker/compose).
+Running one nginx docker container to serve multiple containers via https easily, using [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy).
 
 ## How to use
 
@@ -11,12 +11,7 @@ First of all, generate self-signed certs since all will be on https.
 ./generate-cert.sh local.docker
 ```
 
-Then start a container using docker-compose. It will create a `nginx` container which listens 80 and 443 ports - make sure no other containers are listening them.
-
-```
-# see docker-compose.yml for details
-docker-compose start
-```
+Then start a container by running `start.sh`. It will (re)create a `nginx` container which listens 80 and 443 ports - make sure no other containers are listening them.
 
 Once the `nginx` container is started, it will watch running docker containers and automatically update nginx configuration for containers who has `VIRTUAL_HOST` env variables. Note that you should use subdomain (e.g. `hello.local.docker`) to use `certs/local.docker.*` certs.
 
